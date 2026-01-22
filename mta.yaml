@@ -35,7 +35,7 @@ modules:
     no-source: true
 - name: sapbpthelloworldui5-app-content
   type: com.sap.application.content
-  path: .
+  path: fiori/helloworldui5
   requires:
   - name: sapbpthelloworldui5-repo-host
     parameters:
