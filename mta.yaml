@@ -37,7 +37,7 @@ modules:
 
   - name: sapbpthelloworldui5
     type: html5
-    path: fiori/helloworldui5
+    path: .
     build-parameters:
       builder: npm
       build-result: dist
