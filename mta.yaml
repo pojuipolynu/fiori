@@ -33,30 +33,28 @@ modules:
         existing_destinations_policy: update
   build-parameters:
     no-source: true
-- name: sapbpthelloworldui5-app-content
-  type: com.sap.application.content
-  path: fiori/helloworldui5
-  requires:
-  - name: sapbpthelloworldui5-repo-host
-    parameters:
-      content-target: true
-  build-parameters:
-    build-result: resources
+    
+  - name: sapbpthelloworldui5
+    type: html5
+    path: fiori/helloworldui5
+    build-parameters:
+      builder: npm
+      build-result: dist
+      supported-platforms: []
+
+  - name: sapbpthelloworldui5-app-content
+    type: com.sap.application.content
+    path: .
     requires:
-    - artifacts:
-      - sapbpthelloworldui5.zip
-      name: sapbpthelloworldui5
-      target-path: resources/
-- name: sapbpthelloworldui5
-  type: html5
-  path: .
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
+      - name: sapbpthelloworldui5-html5-repo-host
+    build-parameters:
+      no-source: true
+      requires:
+        - name: sapbpthelloworldui5
+          artifacts:
+            - dist
+          target-path: resources
+
 resources:
 - name: sapbpthelloworldui5-destination-service
   type: org.cloudfoundry.managed-service
